@@ -1,17 +1,12 @@
 // api/save-starseed.js
 import { Client } from '@notionhq/client';
 
-const notion = new Client({
-  auth: process.env.NOTION_SECRET_KEY,
-});
-
 export default async function handler(req, res) {
-  // Enable CORS for your domain
+  // Enable CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  // Handle preflight requests
   if (req.method === 'OPTIONS') {
     res.status(200).end();
     return;
@@ -22,6 +17,15 @@ export default async function handler(req, res) {
   }
 
   try {
+    // Debug: Check if environment variables exist
+    console.log('NOTION_SECRET_KEY exists:', !!process.env.NOTION_SECRET_KEY);
+    console.log('NOTION_DATABASE_ID exists:', !!process.env.NOTION_DATABASE_ID);
+    console.log('NOTION_SECRET_KEY length:', process.env.NOTION_SECRET_KEY?.length);
+    
+    const notion = new Client({
+      auth: process.env.NOTION_SECRET_KEY,
+    });
+
     const {
       name,
       age,
@@ -40,7 +44,7 @@ export default async function handler(req, res) {
       });
     }
 
-    console.log('Saving to Notion:', { name, starseedType });
+    console.log('Attempting to save to Notion:', { name, starseedType });
 
     // Create page in Notion database
     const response = await notion.pages.create({
@@ -49,13 +53,7 @@ export default async function handler(req, res) {
       },
       properties: {
         'Name': {
-          title: [
-            {
-              text: {
-                content: name,
-              },
-            },
-          ],
+          title: [{ text: { content: name } }],
         },
         'Age': {
           number: parseInt(age),
@@ -64,66 +62,28 @@ export default async function handler(req, res) {
           email: email,
         },
         'Instagram': {
-          rich_text: [
-            {
-              text: {
-                content: instagram,
-              },
-            },
-          ],
+          rich_text: [{ text: { content: instagram } }],
         },
         'Language': {
-          select: {
-            name: language.toUpperCase(),
-          },
+          select: { name: language.toUpperCase() },
         },
         'Starseed Type': {
-          rich_text: [
-            {
-              text: {
-                content: starseedType,
-              },
-            },
-          ],
+          rich_text: [{ text: { content: starseedType } }],
         },
         'Date': {
-          date: {
-            start: new Date().toISOString().split('T')[0],
-          },
+          date: { start: new Date().toISOString().split('T')[0] },
         },
-        'Pleiadian': {
-          number: scores.pleiadian || 0,
-        },
-        'Andromedan': {
-          number: scores.andromedan || 0,
-        },
-        'Arcturian': {
-          number: scores.arcturian || 0,
-        },
-        'Sirian': {
-          number: scores.sirian || 0,
-        },
-        'Lyran': {
-          number: scores.lyran || 0,
-        },
-        'Mintaka': {
-          number: scores.mintaka || 0,
-        },
-        'Blue Ray': {
-          number: scores.blueray || 0,
-        },
-        'Orion': {
-          number: scores.orion || 0,
-        },
-        'Lemurian': {
-          number: scores.lemurian || 0,
-        },
-        'Avian': {
-          number: scores.avian || 0,
-        },
-        'Human': {
-          number: scores.human || 0,
-        },
+        'Pleiadian': { number: scores.pleiadian || 0 },
+        'Andromedan': { number: scores.andromedan || 0 },
+        'Arcturian': { number: scores.arcturian || 0 },
+        'Sirian': { number: scores.sirian || 0 },
+        'Lyran': { number: scores.lyran || 0 },
+        'Mintaka': { number: scores.mintaka || 0 },
+        'Blue Ray': { number: scores.blueray || 0 },
+        'Orion': { number: scores.orion || 0 },
+        'Lemurian': { number: scores.lemurian || 0 },
+        'Avian': { number: scores.avian || 0 },
+        'Human': { number: scores.human || 0 },
       },
     });
 
@@ -136,11 +96,16 @@ export default async function handler(req, res) {
     });
 
   } catch (error) {
-    console.error('Error saving to Notion:', error);
+    console.error('Detailed error:', error);
     res.status(500).json({ 
       success: false, 
       message: 'Failed to save results',
-      error: error.message 
+      error: error.message,
+      // Temporary debug info
+      debug: {
+        hasSecretKey: !!process.env.NOTION_SECRET_KEY,
+        secretKeyLength: process.env.NOTION_SECRET_KEY?.length
+      }
     });
   }
 }
