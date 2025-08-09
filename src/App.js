@@ -1,15 +1,5 @@
-import React, { useState } from "react";
-import {
-  ChevronRight,
-  Star,
-  Circle,
-  Moon,
-  Globe,
-  User,
-  Mail,
-  Hash,
-  Calendar,
-} from "lucide-react";
+import React, { useState } from 'react';
+import { ChevronRight, Star, Circle, Moon, Globe, User, Mail, Hash, Calendar } from 'lucide-react';
 
 // Embedded styles to prevent reversion
 const styles = `
@@ -458,14 +448,14 @@ body {
 `;
 
 const StarseedQuiz = () => {
-  const [currentStep, setCurrentStep] = useState("userInfo");
+  const [currentStep, setCurrentStep] = useState('userInfo');
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [language, setLanguage] = useState("en");
+  const [language, setLanguage] = useState('en');
   const [userInfo, setUserInfo] = useState({
-    name: "",
-    age: "",
-    email: "",
-    instagram: "",
+    name: '',
+    age: '',
+    email: '',
+    instagram: ''
   });
   const [scores, setScores] = useState({
     pleiadian: 0,
@@ -478,12 +468,12 @@ const StarseedQuiz = () => {
     orion: 0,
     lemurian: 0,
     avian: 0,
-    human: 0,
+    human: 0
   });
   const [showResults, setShowResults] = useState(false);
   const [answers, setAnswers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [saveStatus, setSaveStatus] = useState("");
+  const [saveStatus, setSaveStatus] = useState('');
 
   const content = {
     en: {
@@ -491,8 +481,7 @@ const StarseedQuiz = () => {
       subtitle: "Discover your cosmic origins and soul's destiny",
       userForm: {
         title: "COSMIC REGISTRATION",
-        subtitle:
-          "Before we discover your starseed origins, share your earthly details",
+        subtitle: "Before we discover your starseed origins, share your earthly details",
         nameLabel: "Full Name",
         namePlaceholder: "Enter your name…",
         ageLabel: "Age",
@@ -502,75 +491,39 @@ const StarseedQuiz = () => {
         instagramLabel: "Instagram Handle",
         instagramPlaceholder: "@yourhandle",
         continueButton: "BEGIN COSMIC JOURNEY",
-        requiredFields: "All fields are required",
+        requiredFields: "All fields are required"
       },
       questions: [
         {
           question: "How do you feel about Earth and fitting in?",
           options: [
-            {
-              text: "I've always felt different and like I don't belong here",
-              points: { andromedan: 3, lyran: 2, mintaka: 2, orion: 2 },
-            },
-            {
-              text: "I dream of a home among the stars and feel homesick for it",
-              points: { pleiadian: 3, mintaka: 3, blueray: 2 },
-            },
-            {
-              text: "I feel I must help humanity awaken",
-              points: { arcturian: 3, blueray: 3, lemurian: 2 },
-            },
-            {
-              text: "Earth feels like a prison, I crave freedom",
-              points: { andromedan: 4, avian: 3, lyran: 2 },
-            },
-            {
-              text: "I feel perfectly at home on Earth and love human life",
-              points: { human: 4 },
-            },
-          ],
+            { text: "I've always felt different and like I don't belong here", points: { andromedan: 3, lyran: 2, mintaka: 2, orion: 2 } },
+            { text: "I dream of a home among the stars and feel homesick for it", points: { pleiadian: 3, mintaka: 3, blueray: 2 } },
+            { text: "I feel I must help humanity awaken", points: { arcturian: 3, blueray: 3, lemurian: 2 } },
+            { text: "Earth feels like a prison, I crave freedom", points: { andromedan: 4, avian: 3, lyran: 2 } },
+            { text: "I feel perfectly at home on Earth and love human life", points: { human: 4 } }
+          ]
         },
         {
           question: "What attracts you most?",
           options: [
-            {
-              text: "Love, healing hearts and romance",
-              points: { pleiadian: 4, lemurian: 2 },
-            },
-            {
-              text: "Freedom, travel and ancient wisdom",
-              points: { andromedan: 4, lyran: 2, avian: 2 },
-            },
-            {
-              text: "Science, technology and humanity's future",
-              points: { arcturian: 4, orion: 2 },
-            },
-            {
-              text: "Nature, animals and creative expression",
-              points: { sirian: 4, lemurian: 3, mintaka: 2 },
-            },
-            {
-              text: "Career success, material comfort and family life",
-              points: { human: 4 },
-            },
-          ],
+            { text: "Love, healing hearts and romance", points: { pleiadian: 4, lemurian: 2 } },
+            { text: "Freedom, travel and ancient wisdom", points: { andromedan: 4, lyran: 2, avian: 2 } },
+            { text: "Science, technology and humanity's future", points: { arcturian: 4, orion: 2 } },
+            { text: "Nature, animals and creative expression", points: { sirian: 4, lemurian: 3, mintaka: 2 } },
+            { text: "Career success, material comfort and family life", points: { human: 4 } }
+          ]
         },
         {
           question: "Your connection to the stars:",
           options: [
             { text: "The Pleiades feels like home", points: { pleiadian: 4 } },
-            {
-              text: "I feel connected to Andromeda",
-              points: { andromedan: 4 },
-            },
+            { text: "I feel connected to Andromeda", points: { andromedan: 4 } },
             { text: "Arcturus resonates with me", points: { arcturian: 4 } },
             { text: "Sirius is my star", points: { sirian: 4, mintaka: 2 } },
-            {
-              text: "I appreciate stars but don't feel a special connection",
-              points: { human: 4 },
-            },
-          ],
-        },
+            { text: "I appreciate stars but don't feel a special connection", points: { human: 4 } }
+          ]
+        }
       ],
       starseedTypes: {
         pleiadian: {
@@ -583,14 +536,12 @@ const StarseedQuiz = () => {
             "Honest and loyal in relationships",
             "Struggle with self-worth but have pure intentions",
             "Charming and naturally attractive",
-            "Sensitive to Western medicine and harsh energies",
+            "Sensitive to Western medicine and harsh energies"
           ],
-          mission:
-            "Your mission is to heal humanity's wounded hearts and help people remember their divine nature through unconditional love.",
-          challenges:
-            "You may struggle with energy vampires, giving your power away, and putting others before yourself.",
+          mission: "Your mission is to heal humanity's wounded hearts and help people remember their divine nature through unconditional love.",
+          challenges: "You may struggle with energy vampires, giving your power away, and putting others before yourself.",
           element: "💎 Crystal of Love",
-          frequency: "528 Hz - Love Frequency",
+          frequency: "528 Hz - Love Frequency"
         },
         andromedan: {
           name: "Andromedan",
@@ -602,14 +553,12 @@ const StarseedQuiz = () => {
             "Natural teacher and guide",
             "Loves travel and new experiences",
             "Both creative AND logical",
-            "Drawn to ancient civilizations and water",
+            "Drawn to ancient civilizations and water"
           ],
-          mission:
-            "Your mission is to bring freedom, unity, and balance to humanity. You're here to guide others to break free from limitations.",
-          challenges:
-            "You may feel extra frustrated with Earth's systems and struggle with the controlled environment.",
+          mission: "Your mission is to bring freedom, unity, and balance to humanity. You're here to guide others to break free from limitations.",
+          challenges: "You may feel extra frustrated with Earth's systems and struggle with the controlled environment.",
           element: "🌊 Waters of Wisdom",
-          frequency: "741 Hz - Liberation Frequency",
+          frequency: "741 Hz - Liberation Frequency"
         },
         arcturian: {
           name: "Arcturian",
@@ -621,14 +570,12 @@ const StarseedQuiz = () => {
             "Strong opinions based on experience",
             "Focused on creating a better future",
             "Good at scientific and logical thinking",
-            "Natural leaders and communicators",
+            "Natural leaders and communicators"
           ],
-          mission:
-            "Your mission is to innovate and guide Earth into a new, better future through technology and practical wisdom.",
-          challenges:
-            "You may struggle with being too emotionally detached or having difficulty forming close relationships.",
+          mission: "Your mission is to innovate and guide Earth into a new, better future through technology and practical wisdom.",
+          challenges: "You may struggle with being too emotionally detached or having difficulty forming close relationships.",
           element: "⚡ Energy of Progress",
-          frequency: "963 Hz - Unity Frequency",
+          frequency: "963 Hz - Unity Frequency"
         },
         sirian: {
           name: "Sirian",
@@ -640,14 +587,12 @@ const StarseedQuiz = () => {
             "Prefer small groups to large crowds",
             "Process everything internally",
             "Creative and artistic",
-            "Shy and reserved but wise",
+            "Shy and reserved but wise"
           ],
-          mission:
-            "Your mission is to help Earth remember its divine purpose by inspiring creativity and sharing ancient wisdom.",
-          challenges:
-            "You may feel like an outcast or struggle with being misunderstood.",
+          mission: "Your mission is to help Earth remember its divine purpose by inspiring creativity and sharing ancient wisdom.",
+          challenges: "You may feel like an outcast or struggle with being misunderstood.",
           element: "🐋 Ocean Spirit",
-          frequency: "432 Hz - Nature Frequency",
+          frequency: "432 Hz - Nature Frequency"
         },
         lyran: {
           name: "Lyran",
@@ -659,14 +604,12 @@ const StarseedQuiz = () => {
             "Independent and strong-willed",
             "Excellent problem-solvers",
             "Confident and self-assured",
-            "Drawn to stars and cosmic mysteries",
+            "Drawn to stars and cosmic mysteries"
           ],
-          mission:
-            "Your mission is to inspire others to embrace their true power and transcend limitations.",
-          challenges:
-            "You may feel lonely or misunderstood due to your independent nature.",
+          mission: "Your mission is to inspire others to embrace their true power and transcend limitations.",
+          challenges: "You may feel lonely or misunderstood due to your independent nature.",
           element: "🔥 Fire of Transformation",
-          frequency: "396 Hz - Liberation from Fear",
+          frequency: "396 Hz - Liberation from Fear"
         },
         mintaka: {
           name: "Mintakan",
@@ -678,33 +621,29 @@ const StarseedQuiz = () => {
             "Very empathetic and sensitive",
             "Natural healers and lightworkers",
             "Strong connection to dolphins and whales",
-            "Quiet and introspective",
+            "Quiet and introspective"
           ],
-          mission:
-            "Your mission is to heal Earth's waters and help humanity reconnect with aquatic wisdom.",
-          challenges:
-            "Deep homesickness for destroyed home may cause depression.",
+          mission: "Your mission is to heal Earth's waters and help humanity reconnect with aquatic wisdom.",
+          challenges: "Deep homesickness for destroyed home may cause depression.",
           element: "💧 Sacred Water",
-          frequency: "285 Hz - Healing Frequency",
+          frequency: "285 Hz - Healing Frequency"
         },
         blueray: {
           name: "Blue Ray",
           symbol: "💙",
-          description:
-            "Spiritual pioneer and transmitter of higher frequencies",
+          description: "Spiritual pioneer and transmitter of higher frequencies",
           traits: [
             "Highly sensitive to energies and frequencies",
             "Natural healers and teachers",
             "Strong connection to higher dimensions",
             "First wave starseeds on Earth",
             "Empathic to extremes",
-            "Strong psychic abilities",
+            "Strong psychic abilities"
           ],
-          mission:
-            "Your mission is to hold higher frequencies of light on Earth and prepare the way for humanity's awakening.",
+          mission: "Your mission is to hold higher frequencies of light on Earth and prepare the way for humanity's awakening.",
           challenges: "Your extreme sensitivity can be overwhelming.",
           element: "💎 Crystal of Light",
-          frequency: "852 Hz - Awakening Frequency",
+          frequency: "852 Hz - Awakening Frequency"
         },
         orion: {
           name: "Orion",
@@ -716,14 +655,12 @@ const StarseedQuiz = () => {
             "Technologically advanced",
             "Logical and analytical",
             "Struggle with duality of light and dark",
-            "Strong connection to crystals and geometry",
+            "Strong connection to crystals and geometry"
           ],
-          mission:
-            "Your mission is to bring balance between polarities and help heal ancient wars between light and dark.",
-          challenges:
-            "You may struggle with internal conflicts between your light and dark nature.",
+          mission: "Your mission is to bring balance between polarities and help heal ancient wars between light and dark.",
+          challenges: "You may struggle with internal conflicts between your light and dark nature.",
           element: "⚔ Power of Balance",
-          frequency: "417 Hz - Transformation Frequency",
+          frequency: "417 Hz - Transformation Frequency"
         },
         lemurian: {
           name: "Lemurian",
@@ -735,13 +672,12 @@ const StarseedQuiz = () => {
             "Strong connection to crystals",
             "Feel responsible for healing Earth",
             "Intuitive and psychic",
-            "Prefer natural lifestyle",
+            "Prefer natural lifestyle"
           ],
-          mission:
-            "Your mission is to restore ancient spiritual practices and help humanity remember its connection to Earth.",
+          mission: "Your mission is to restore ancient spiritual practices and help humanity remember its connection to Earth.",
           challenges: "You may grieve humanity's lost spirituality.",
           element: "🌿 Earth Spirit",
-          frequency: "174 Hz - Grounding Frequency",
+          frequency: "174 Hz - Grounding Frequency"
         },
         avian: {
           name: "Avian",
@@ -753,34 +689,30 @@ const StarseedQuiz = () => {
             "Natural mystics and visionaries",
             "High spiritual ideals",
             "Strong connection to higher dimensions",
-            "Feel called to guide souls to light",
+            "Feel called to guide souls to light"
           ],
-          mission:
-            "Your mission is to help souls rise to higher consciousness and find spiritual freedom.",
+          mission: "Your mission is to help souls rise to higher consciousness and find spiritual freedom.",
           challenges: "You may feel too detached from earthly reality.",
           element: "🌬 Breath of Spirit",
-          frequency: "639 Hz - Harmony Frequency",
+          frequency: "639 Hz - Harmony Frequency"
         },
         human: {
           name: "Earth Human",
           symbol: "🌍",
-          description:
-            "Grounded Earth soul living your first Earth incarnation",
+          description: "Grounded Earth soul living your first Earth incarnation",
           traits: [
             "Feel perfectly at home on Earth",
             "Focused on practical, earthly concerns",
             "Strong connection to human society and culture",
             "Comfortable with conventional life paths",
             "Motivated by family, career, and material success",
-            "Skeptical of mystical or otherworldly concepts",
+            "Skeptical of mystical or otherworldly concepts"
           ],
-          mission:
-            "Your mission is to experience human life fully, build society, and learn through earthly challenges and relationships.",
-          challenges:
-            "You may struggle to understand more spiritually-oriented people or feel confused by mystical concepts.",
+          mission: "Your mission is to experience human life fully, build society, and learn through earthly challenges and relationships.",
+          challenges: "You may struggle to understand more spiritually-oriented people or feel confused by mystical concepts.",
           element: "🏔 Mountain Strength",
-          frequency: "256 Hz - Earth Frequency",
-        },
+          frequency: "256 Hz - Earth Frequency"
+        }
       },
       ui: {
         progress: "of",
@@ -792,14 +724,265 @@ const StarseedQuiz = () => {
         challenges: "CHALLENGES",
         saving: "Saving to cosmic database…",
         saved: "✨ Data saved to the cosmos",
-        error: "Unable to save to cosmic database",
-      },
+        error: "Unable to save to cosmic database"
+      }
     },
+    ru: {
+      title: "ЗВЕЗДНЫЙ ОРАКУЛ",
+      subtitle: "Откройте ваши космические корни и предназначение души",
+      userForm: {
+        title: "КОСМИЧЕСКАЯ РЕГИСТРАЦИЯ",
+        subtitle: "Прежде чем открыть ваши звездные корни, поделитесь земными деталями",
+        nameLabel: "Полное имя",
+        namePlaceholder: "Введите ваше имя…",
+        ageLabel: "Возраст",
+        agePlaceholder: "Ваш возраст…",
+        emailLabel: "Email",
+        emailPlaceholder: "ваш@email.com",
+        instagramLabel: "Instagram",
+        instagramPlaceholder: "@yourhandle",
+        continueButton: "НАЧАТЬ КОСМИЧЕСКОЕ ПУТЕШЕСТВИЕ",
+        requiredFields: "Все поля обязательны"
+      },
+      questions: [
+        {
+          question: "Как вы ощущаете себя на Земле?",
+          options: [
+            { text: "Я всегда чувствовал себя чужим, как будто не принадлежу этому миру", points: { andromedan: 3, lyran: 2, mintaka: 2, orion: 2 } },
+            { text: "Мне снится дом среди звезд, и я тоскую по нему", points: { pleiadian: 3, mintaka: 3, blueray: 2 } },
+            { text: "Я чувствую, что должен помочь человечеству пробудиться", points: { arcturian: 3, blueray: 3, lemurian: 2 } },
+            { text: "Земля кажется тюрьмой, я жажду свободы", points: { andromedan: 4, avian: 3, lyran: 2 } },
+            { text: "Я прекрасно чувствую себя дома на Земле и люблю человеческую жизнь", points: { human: 4 } }
+          ]
+        },
+        {
+          question: "Что вас больше всего привлекает?",
+          options: [
+            { text: "Любовь, исцеление сердец и романтика", points: { pleiadian: 4, lemurian: 2 } },
+            { text: "Свобода, путешествия и древняя мудрость", points: { andromedan: 4, lyran: 2, avian: 2 } },
+            { text: "Наука, технологии и будущее человечества", points: { arcturian: 4, orion: 2 } },
+            { text: "Природа, животные и творческое самовыражение", points: { sirian: 4, lemurian: 3, mintaka: 2 } },
+            { text: "Карьерный успех, материальный комфорт и семейная жизнь", points: { human: 4 } }
+          ]
+        },
+        {
+          question: "Ваша связь со звездами:",
+          options: [
+            { text: "Плеяды кажутся мне домом", points: { pleiadian: 4 } },
+            { text: "Я чувствую связь с Андромедой", points: { andromedan: 4 } },
+            { text: "Арктур вызывает во мне отклик", points: { arcturian: 4 } },
+            { text: "Сириус - моя звезда", points: { sirian: 4, mintaka: 2 } },
+            { text: "Я ценю звезды, но не чувствую особой связи", points: { human: 4 } }
+          ]
+        }
+      ],
+      starseedTypes: {
+        pleiadian: {
+          name: "Плеядианец",
+          symbol: "♥",
+          description: "Целитель сердец из звездного скопления Плеяды",
+          traits: [
+            "Крайне эмпатичны и поглощают эмоции других",
+            "Мощные целители, сосредоточенные на эмоциональном исцелении",
+            "Честны и преданы в отношениях",
+            "Борются с самооценкой, но имеют чистые намерения",
+            "Обаятельны и естественно привлекательны",
+            "Чувствительны к западной медицине и грубой энергии"
+          ],
+          mission: "Ваша миссия - исцелить раненые сердца человечества и помочь людям вспомнить их божественную природу через безусловную любовь.",
+          challenges: "Вы можете бороться с энергетическими вампирами, отдавать свою силу и ставить других выше себя.",
+          element: "💎 Кристалл любви",
+          frequency: "528 Гц - Частота Любви"
+        },
+        andromedan: {
+          name: "Андромедианец",
+          symbol: "⚖",
+          description: "Учитель свободы из галактики Андромеда",
+          traits: [
+            "Сбалансированная мужская и женская энергия",
+            "Жаждет свободы превыше всего",
+            "Естественный учитель и проводник",
+            "Любит путешествия и новые опыты",
+            "Одновременно творческий И логический",
+            "Тянется к древним цивилизациям и воде"
+          ],
+          mission: "Ваша миссия - принести свободу, единство и баланс человечеству. Вы здесь, чтобы направить других к освобождению от ограничений.",
+          challenges: "Вы можете чувствовать дополнительное разочарование системами Земли и бороться с контролируемой средой.",
+          element: "🌊 Вода мудрости",
+          frequency: "741 Гц - Частота освобождения"
+        },
+        arcturian: {
+          name: "Арктурианец",
+          symbol: "△",
+          description: "Инновационный лидер из звездной системы Арктур",
+          traits: [
+            "Высоко организованы и систематичны",
+            "Отлично планируют и проявляют",
+            "Сильные мнения, основанные на опыте",
+            "Сосредоточены на создании лучшего будущего",
+            "Хороши в научном и логическом мышлении",
+            "Естественные лидеры и коммуникаторы"
+          ],
+          mission: "Ваша миссия - вводить новшества и направлять Землю в новое, лучшее будущее через технологии и практическую мудрость.",
+          challenges: "Вы можете бороться с чрезмерной эмоциональной отстраненностью или иметь трудности в формировании близких отношений.",
+          element: "⚡ Энергия прогресса",
+          frequency: "963 Гц - Частота единения"
+        },
+        sirian: {
+          name: "Сирианец",
+          symbol: "👁",
+          description: "Интуитивный мистик из звездной системы Сириус",
+          traits: [
+            "Высоко интуитивны и обладают воображением",
+            "Глубоко связаны с природой и животными",
+            "Предпочитают малые группы большим толпам",
+            "Обрабатывают все внутренне",
+            "Творческие и артистичные",
+            "Застенчивы и сдержанны, но мудры"
+          ],
+          mission: "Ваша миссия - помочь Земле вспомнить её божественную цель, вдохновляя творчество и делясь древней мудростью.",
+          challenges: "Вы можете чувствовать себя изгоем или бороться с непониманием.",
+          element: "🐋 Дух океана",
+          frequency: "432 Гц - Частота природы"
+        },
+        lyran: {
+          name: "Лирианец",
+          symbol: "☀",
+          description: "Мужественный первопроходец из созвездия Лира",
+          traits: [
+            "Авантюрны и бесстрашны",
+            "Естественный лидер, любящий внимание",
+            "Независимы и сильны духом",
+            "Отличные решатели проблем",
+            "Уверены в себе и самоуверенны",
+            "Тянутся к звездам и космическим тайнам"
+          ],
+          mission: "Ваша миссия - вдохновить других принять их истинную силу и превзойти ограничения.",
+          challenges: "Вы можете чувствовать одиночество или непонимание из-за вашей независимой природы.",
+          element: "🔥 Огонь трансформации",
+          frequency: "396 Гц - Частота освобождения от страха"
+        },
+        mintaka: {
+          name: "Минтаканец",
+          symbol: "🌊",
+          description: "Водный мистик с разрушенной планеты Минтака",
+          traits: [
+            "Глубокая связь с водой и водными существами",
+            "Чувствуют тоску по дому сильнее других звездных семян",
+            "Очень сочувствующие и чувствительные",
+            "Естественные целители и работники света",
+            "Сильная связь с дельфинами и китами",
+            "Тихие и интроспективные"
+          ],
+          mission: "Ваша миссия - исцелить воды Земли и помочь человечеству восстановить связь с водной мудростью.",
+          challenges: "Глубокая тоска по разрушенному дому может вызывать депрессию.",
+          element: "💧 Священная вода",
+          frequency: "285 Гц - Частота исцеления"
+        },
+        blueray: {
+          name: "Голубой Луч",
+          symbol: "💙",
+          description: "Пионер духовности и передатчик высших частот",
+          traits: [
+            "Высоко чувствительны к энергиям и частотам",
+            "Естественные целители и учителя",
+            "Сильная связь с высшими измерениями",
+            "Первые волны звездных семян на Земле",
+            "Эмпатичны до крайности",
+            "Сильные экстрасенсорные способности"
+          ],
+          mission: "Ваша миссия - держать высшие частоты света на Земле и подготовить путь для пробуждения человечества.",
+          challenges: "Ваша крайняя чувствительность может быть подавляющей.",
+          element: "💎 Кристалл света",
+          frequency: "852 Гц - Частота пробуждения"
+        },
+        orion: {
+          name: "Орионец",
+          symbol: "⭐",
+          description: "Воин света из созвездия Орион",
+          traits: [
+            "Сильные лидерские качества",
+            "Естественные воины за справедливость",
+            "Технологически продвинуты",
+            "Логичны и аналитичны",
+            "Борются с дуальностью света и тьмы",
+            "Сильная связь с кристаллами и геометрией"
+          ],
+          mission: "Ваша миссия - принести баланс между полярностями и помочь исцелить древние войны между светом и тьмой.",
+          challenges: "Вы можете бороться с внутренними конфликтами между своей светлой и темной природой.",
+          element: "⚔ Мощь баланса",
+          frequency: "417 Гц - Частота трансформации"
+        },
+        lemurian: {
+          name: "Лемуриец",
+          symbol: "🌺",
+          description: "Древний хранитель мудрости погибшей Лемурии",
+          traits: [
+            "Глубокая связь с древней мудростью Земли",
+            "Естественные шаманы и целители",
+            "Сильная связь с кристаллами",
+            "Чувствуют ответственность за исцеление Земли",
+            "Интуитивны и экстрасенсорны",
+            "Предпочитают естественный образ жизни"
+          ],
+          mission: "Ваша миссия - восстановить древние духовные практики и помочь человечеству вспомнить его связь с Землей.",
+          challenges: "Вы можете грустить об утерянной духовности человечества.",
+          element: "🌿 Дух Земли",
+          frequency: "174 Гц - Частота заземления"
+        },
+        avian: {
+          name: "Птичий",
+          symbol: "🦅",
+          description: "Вознесенное существо с птичьими качествами",
+          traits: [
+            "Сильная связь с птицами и полетом",
+            "Желание духовной свободы",
+            "Естественные мистики и провидцы",
+            "Высокие духовные идеалы",
+            "Сильная связь с высшими измерениями",
+            "Чувствуют призвание направлять души к свету"
+          ],
+          mission: "Ваша миссия - помочь душам подняться к высшему сознанию и обрести духовную свободу.",
+          challenges: "Вы можете чувствовать себя слишком отстраненными от земной реальности.",
+          element: "🌬 Дыхание духа",
+          frequency: "639 Гц - Частота гармонии"
+        },
+        human: {
+          name: "Земной Человек",
+          symbol: "🌍",
+          description: "Заземленная земная душа, живущая свою первую земную инкарнацию",
+          traits: [
+            "Чувствуете себя прекрасно дома на Земле",
+            "Сосредоточены на практических, земных заботах",
+            "Сильная связь с человеческим обществом и культурой",
+            "Комфортно с традиционными жизненными путями",
+            "Мотивированы семьей, карьерой и материальным успехом",
+            "Скептически относитесь к мистическим или потусторонним концепциям"
+          ],
+          mission: "Ваша миссия - полностью испытать человеческую жизнь, строить общество и учиться через земные вызовы и отношения.",
+          challenges: "Вы можете испытывать трудности в понимании более духовно ориентированных людей или чувствовать смущение от мистических концепций.",
+          element: "🏔 Сила горы",
+          frequency: "256 Гц - Частота Земли"
+        }
+      },
+      ui: {
+        progress: "из",
+        newJourney: "НОВОЕ ПУТЕШЕСТВИЕ",
+        soulResonance: "РЕЗОНАНС ДУШИ",
+        points: "points",
+        yourTraits: "ВАШИ ЧЕРТЫ",
+        mission: "МИССИЯ",
+        challenges: "ВЫЗОВЫ",
+        saving: "Сохранение в космическую базу данных…",
+        saved: "✨ Данные сохранены в космос",
+        error: "Не удалось сохранить в космическую базу данных"
+      }
+    }
   };
 
   const handleUserInfoSubmit = () => {
     if (userInfo.name && userInfo.age && userInfo.email && userInfo.instagram) {
-      setCurrentStep("quiz");
+      setCurrentStep('quiz');
     }
   };
 
@@ -808,7 +991,7 @@ const StarseedQuiz = () => {
     setAnswers(newAnswers);
 
     const newScores = { ...scores };
-    Object.keys(option.points).forEach((type) => {
+    Object.keys(option.points).forEach(type => {
       newScores[type] += option.points[type];
     });
     setScores(newScores);
@@ -817,7 +1000,7 @@ const StarseedQuiz = () => {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       setShowResults(true);
-      setCurrentStep("results");
+      setCurrentStep('results');
     }
   };
 
@@ -827,25 +1010,16 @@ const StarseedQuiz = () => {
   };
 
   const resetQuiz = () => {
-    setCurrentStep("userInfo");
+    setCurrentStep('userInfo');
     setCurrentQuestion(0);
-    setUserInfo({ name: "", age: "", email: "", instagram: "" });
+    setUserInfo({ name: '', age: '', email: '', instagram: '' });
     setScores({
-      pleiadian: 0,
-      andromedan: 0,
-      arcturian: 0,
-      sirian: 0,
-      lyran: 0,
-      mintaka: 0,
-      blueray: 0,
-      orion: 0,
-      lemurian: 0,
-      avian: 0,
-      human: 0,
+      pleiadian: 0, andromedan: 0, arcturian: 0, sirian: 0, lyran: 0,
+      mintaka: 0, blueray: 0, orion: 0, lemurian: 0, avian: 0, human: 0
     });
     setShowResults(false);
     setAnswers([]);
-    setSaveStatus("");
+    setSaveStatus('');
   };
 
   const currentContent = content[language];
@@ -856,12 +1030,12 @@ const StarseedQuiz = () => {
     return Array.from({ length: count }, (_, i) => (
       <div
         key={i}
-        className={`star ${isBig ? "star-big" : ""}`}
+        className={`star ${isBig ? 'star-big' : ''}`}
         style={{
           left: `${Math.random() * 100}%`,
           top: `${Math.random() * 100}%`,
           animationDelay: `${Math.random() * 3}s`,
-          animationDuration: `${2 + Math.random() * 3}s`,
+          animationDuration: `${2 + Math.random() * 3}s`
         }}
       />
     ));
@@ -880,25 +1054,21 @@ const StarseedQuiz = () => {
         {/* Language Switcher */}
         <div className="lang-switcher">
           <button
-            onClick={() => setLanguage(language === "en" ? "ru" : "en")}
+            onClick={() => setLanguage(language === 'en' ? 'ru' : 'en')}
             className="lang-button"
           >
             <Globe size={16} />
-            {language === "en" ? "РУС" : "ENG"}
+            {language === 'en' ? 'РУС' : 'ENG'}
           </button>
         </div>
 
-        {currentStep === "userInfo" && (
+        {currentStep === 'userInfo' && (
           <div className="content-wrapper">
             <div className="cosmic-card">
               <div className="cosmic-header">
-                <h1 className="cosmic-title">
-                  {currentContent.userForm.title}
-                </h1>
+                <h1 className="cosmic-title">{currentContent.userForm.title}</h1>
                 <div className="cosmic-divider"></div>
-                <p className="cosmic-subtitle">
-                  {currentContent.userForm.subtitle}
-                </p>
+                <p className="cosmic-subtitle">{currentContent.userForm.subtitle}</p>
               </div>
 
               <div>
@@ -910,9 +1080,7 @@ const StarseedQuiz = () => {
                   <input
                     type="text"
                     value={userInfo.name}
-                    onChange={(e) =>
-                      setUserInfo({ ...userInfo, name: e.target.value })
-                    }
+                    onChange={(e) => setUserInfo({...userInfo, name: e.target.value})}
                     placeholder={currentContent.userForm.namePlaceholder}
                     className="form-input"
                   />
@@ -926,9 +1094,7 @@ const StarseedQuiz = () => {
                   <input
                     type="number"
                     value={userInfo.age}
-                    onChange={(e) =>
-                      setUserInfo({ ...userInfo, age: e.target.value })
-                    }
+                    onChange={(e) => setUserInfo({...userInfo, age: e.target.value})}
                     placeholder={currentContent.userForm.agePlaceholder}
                     className="form-input"
                   />
@@ -942,9 +1108,7 @@ const StarseedQuiz = () => {
                   <input
                     type="email"
                     value={userInfo.email}
-                    onChange={(e) =>
-                      setUserInfo({ ...userInfo, email: e.target.value })
-                    }
+                    onChange={(e) => setUserInfo({...userInfo, email: e.target.value})}
                     placeholder={currentContent.userForm.emailPlaceholder}
                     className="form-input"
                   />
@@ -958,9 +1122,7 @@ const StarseedQuiz = () => {
                   <input
                     type="text"
                     value={userInfo.instagram}
-                    onChange={(e) =>
-                      setUserInfo({ ...userInfo, instagram: e.target.value })
-                    }
+                    onChange={(e) => setUserInfo({...userInfo, instagram: e.target.value})}
                     placeholder={currentContent.userForm.instagramPlaceholder}
                     className="form-input"
                   />
@@ -968,22 +1130,14 @@ const StarseedQuiz = () => {
 
                 <button
                   onClick={handleUserInfoSubmit}
-                  disabled={
-                    !userInfo.name ||
-                    !userInfo.age ||
-                    !userInfo.email ||
-                    !userInfo.instagram
-                  }
+                  disabled={!userInfo.name || !userInfo.age || !userInfo.email || !userInfo.instagram}
                   className="cosmic-button"
                 >
                   {currentContent.userForm.continueButton}
                 </button>
 
-                {(!userInfo.name ||
-                  !userInfo.age ||
-                  !userInfo.email ||
-                  !userInfo.instagram) && (
-                  <p className="required-text" style={{ marginTop: "16px" }}>
+                {(!userInfo.name || !userInfo.age || !userInfo.email || !userInfo.instagram) && (
+                  <p className="required-text" style={{marginTop: '16px'}}>
                     {currentContent.userForm.requiredFields}
                   </p>
                 )}
@@ -992,13 +1146,11 @@ const StarseedQuiz = () => {
           </div>
         )}
 
-        {currentStep === "quiz" && !showResults && (
+        {currentStep === 'quiz' && !showResults && (
           <div className="content-wrapper content-wrapper-medium">
-            <div style={{ width: "100%" }}>
+            <div style={{width: '100%'}}>
               <div className="cosmic-header">
-                <h1 className="cosmic-title cosmic-title-large">
-                  {currentContent.title}
-                </h1>
+                <h1 className="cosmic-title cosmic-title-large">{currentContent.title}</h1>
                 <div className="cosmic-divider cosmic-divider-large"></div>
                 <p className="cosmic-subtitle">{currentContent.subtitle}</p>
                 <p className="question-subtitle">
@@ -1009,38 +1161,22 @@ const StarseedQuiz = () => {
               <div className="progress-container">
                 <div className="progress-info">
                   <span className="progress-text">
-                    {currentQuestion + 1} {currentContent.ui.progress}{" "}
-                    {questions.length}
+                    {currentQuestion + 1} {currentContent.ui.progress} {questions.length}
                   </span>
                   <span className="progress-text">
-                    {Math.round(
-                      ((currentQuestion + 1) / questions.length) * 100
-                    )}
-                    %
+                    {Math.round(((currentQuestion + 1) / questions.length) * 100)}%
                   </span>
                 </div>
                 <div className="progress-bar-bg">
-                  <div
+                  <div 
                     className="progress-bar"
-                    style={{
-                      width: `${
-                        ((currentQuestion + 1) / questions.length) * 100
-                      }%`,
-                    }}
+                    style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
                   />
                 </div>
               </div>
 
               <div className="cosmic-card">
-                <h2
-                  style={{
-                    fontSize: "1.25rem",
-                    fontWeight: "300",
-                    marginBottom: "32px",
-                    textAlign: "center",
-                    lineHeight: "1.625",
-                  }}
-                >
+                <h2 style={{fontSize: '1.25rem', fontWeight: '300', marginBottom: '32px', textAlign: 'center', lineHeight: '1.625'}}>
                   {questions[currentQuestion].question}
                 </h2>
 
@@ -1059,29 +1195,10 @@ const StarseedQuiz = () => {
               </div>
 
               <div className="geometry-container">
-                <svg
-                  width="60"
-                  height="60"
-                  viewBox="0 0 60 60"
-                  className="geometry-svg"
-                >
-                  <circle
-                    cx="30"
-                    cy="30"
-                    r="15"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="0.5"
-                  />
-                  <circle
-                    cx="30"
-                    cy="30"
-                    r="8"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="0.5"
-                  />
-                  <circle cx="30" cy="30" r="3" fill="white" />
+                <svg width="60" height="60" viewBox="0 0 60 60" className="geometry-svg">
+                  <circle cx="30" cy="30" r="15" fill="none" stroke="white" strokeWidth="0.5"/>
+                  <circle cx="30" cy="30" r="8" fill="none" stroke="white" strokeWidth="0.5"/>
+                  <circle cx="30" cy="30" r="3" fill="white"/>
                 </svg>
               </div>
             </div>
@@ -1090,25 +1207,19 @@ const StarseedQuiz = () => {
 
         {showResults && (
           <div className="content-wrapper content-wrapper-wide">
-            <div style={{ width: "100%" }}>
+            <div style={{width: '100%'}}>
               {(() => {
                 const topType = getTopStarseedType();
                 const result = currentContent.starseedTypes[topType];
-                const topScores = Object.entries(scores)
-                  .sort((a, b) => b[1] - a[1])
-                  .slice(0, 3);
+                const topScores = Object.entries(scores).sort((a, b) => b[1] - a[1]).slice(0, 3);
 
                 return (
                   <>
                     <div className="cosmic-header">
                       <div className="cosmic-title-huge">{result.symbol}</div>
-                      <h1 className="cosmic-title cosmic-title-large">
-                        {result.name}
-                      </h1>
+                      <h1 className="cosmic-title cosmic-title-large">{result.name}</h1>
                       <div className="cosmic-divider cosmic-divider-large"></div>
-                      <p className="cosmic-subtitle cosmic-subtitle-large">
-                        {result.description}
-                      </p>
+                      <p className="cosmic-subtitle cosmic-subtitle-large">{result.description}</p>
                       <p className="user-welcome">Welcome, {userInfo.name}</p>
                     </div>
 
@@ -1130,15 +1241,15 @@ const StarseedQuiz = () => {
                         </div>
 
                         <div className="mission-section">
-                          <div style={{ marginBottom: "24px" }}>
+                          <div style={{marginBottom: '24px'}}>
                             <h3>
                               <Star size={16} />
                               {currentContent.ui.mission}
                             </h3>
                             <p className="mission-text">{result.mission}</p>
                           </div>
-
-                          <div style={{ marginBottom: "24px" }}>
+                          
+                          <div style={{marginBottom: '24px'}}>
                             <h3>
                               <Moon size={16} />
                               {currentContent.ui.challenges}
@@ -1147,46 +1258,27 @@ const StarseedQuiz = () => {
                           </div>
 
                           <div className="element-section">
-                            <div className="element-symbol">
-                              {result.element}
-                            </div>
-                            <div className="element-frequency">
-                              {result.frequency}
-                            </div>
+                            <div className="element-symbol">{result.element}</div>
+                            <div className="element-frequency">{result.frequency}</div>
                           </div>
                         </div>
                       </div>
                     </div>
 
                     <div className="cosmic-card">
-                      <h3
-                        style={{
-                          fontSize: "1.25rem",
-                          fontWeight: "300",
-                          marginBottom: "24px",
-                          textAlign: "center",
-                        }}
-                      >
+                      <h3 style={{fontSize: '1.25rem', fontWeight: '300', marginBottom: '24px', textAlign: 'center'}}>
                         {currentContent.ui.soulResonance}
                       </h3>
                       <div className="scores-grid">
                         {topScores.map(([type, score], index) => (
                           <div key={type} className="score-item">
-                            <div className="score-symbol">
-                              {currentContent.starseedTypes[type].symbol}
-                            </div>
-                            <div className="score-name">
-                              {currentContent.starseedTypes[type].name}
-                            </div>
-                            <div className="score-points">
-                              {score} {currentContent.ui.points}
-                            </div>
+                            <div className="score-symbol">{currentContent.starseedTypes[type].symbol}</div>
+                            <div className="score-name">{currentContent.starseedTypes[type].name}</div>
+                            <div className="score-points">{score} {currentContent.ui.points}</div>
                             <div className="score-bar-bg">
-                              <div
+                              <div 
                                 className="score-bar"
-                                style={{
-                                  width: `${(score / topScores[0][1]) * 100}%`,
-                                }}
+                                style={{ width: `${(score / topScores[0][1]) * 100}%` }}
                               />
                             </div>
                           </div>
@@ -1195,61 +1287,17 @@ const StarseedQuiz = () => {
                     </div>
 
                     <div className="geometry-container">
-                      <svg
-                        width="100"
-                        height="100"
-                        viewBox="0 0 100 100"
-                        className="geometry-svg"
-                      >
-                        <circle
-                          cx="50"
-                          cy="50"
-                          r="25"
-                          fill="none"
-                          stroke="white"
-                          strokeWidth="0.5"
-                        />
-                        <circle
-                          cx="50"
-                          cy="50"
-                          r="15"
-                          fill="none"
-                          stroke="white"
-                          strokeWidth="0.5"
-                        />
-                        <circle
-                          cx="50"
-                          cy="50"
-                          r="5"
-                          fill="none"
-                          stroke="white"
-                          strokeWidth="0.5"
-                        />
-                        <line
-                          x1="50"
-                          y1="25"
-                          x2="50"
-                          y2="75"
-                          stroke="white"
-                          strokeWidth="0.5"
-                        />
-                        <line
-                          x1="25"
-                          y1="50"
-                          x2="75"
-                          y2="50"
-                          stroke="white"
-                          strokeWidth="0.5"
-                        />
+                      <svg width="100" height="100" viewBox="0 0 100 100" className="geometry-svg">
+                        <circle cx="50" cy="50" r="25" fill="none" stroke="white" strokeWidth="0.5"/>
+                        <circle cx="50" cy="50" r="15" fill="none" stroke="white" strokeWidth="0.5"/>
+                        <circle cx="50" cy="50" r="5" fill="none" stroke="white" strokeWidth="0.5"/>
+                        <line x1="50" y1="25" x2="50" y2="75" stroke="white" strokeWidth="0.5"/>
+                        <line x1="25" y1="50" x2="75" y2="50" stroke="white" strokeWidth="0.5"/>
                       </svg>
                     </div>
 
-                    <div style={{ textAlign: "center" }}>
-                      <button
-                        onClick={resetQuiz}
-                        className="cosmic-button"
-                        style={{ maxWidth: "300px", margin: "0 auto" }}
-                      >
+                    <div style={{textAlign: 'center'}}>
+                      <button onClick={resetQuiz} className="cosmic-button" style={{maxWidth: '300px', margin: '0 auto'}}>
                         {currentContent.ui.newJourney}
                       </button>
                     </div>
