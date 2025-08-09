@@ -443,6 +443,8 @@ const StarseedQuiz = () => {
   });
   const [showResults, setShowResults] = useState(false);
   const [answers, setAnswers] = useState([]);
+  const [saving, setSaving] = useState(false);
+  const [saveStatus, setSaveStatus] = useState('');
 
   const content = {
     en: {
@@ -1294,12 +1296,61 @@ const StarseedQuiz = () => {
     } else {
       setShowResults(true);
       setCurrentStep('results');
+      // Automatically save results when quiz is completed
+      setTimeout(() => {
+        saveToNotion();
+      }, 1000);
     }
   };
 
   const getTopStarseedType = () => {
     const sortedTypes = Object.entries(scores).sort((a, b) => b[1] - a[1]);
     return sortedTypes[0][0];
+  };
+
+  const saveToNotion = async () => {
+    setSaving(true);
+    setSaveStatus('');
+    
+    try {
+      const topType = getTopStarseedType();
+      const result = currentContent.starseedTypes[topType];
+      
+      // Prepare data for API
+      const quizData = {
+        name: userInfo.name,
+        age: parseInt(userInfo.age),
+        email: userInfo.email,
+        instagram: userInfo.instagram,
+        language: language,
+        starseedType: result.name,
+        scores: scores
+      };
+
+      // Call your API endpoint
+      const response = await fetch('/api/save-starseed', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(quizData)
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setSaveStatus('saved');
+        console.log('Quiz results saved successfully:', data.pageId);
+      } else {
+        setSaveStatus('error');
+        console.error('Failed to save:', data.message);
+      }
+    } catch (error) {
+      console.error('Error saving to backend:', error);
+      setSaveStatus('error');
+    } finally {
+      setSaving(false);
+    }
   };
 
   const resetQuiz = () => {
@@ -1312,6 +1363,8 @@ const StarseedQuiz = () => {
     });
     setShowResults(false);
     setAnswers([]);
+    setSaving(false);
+    setSaveStatus('');
   };
 
   const currentContent = content[language];
@@ -1589,6 +1642,41 @@ const StarseedQuiz = () => {
                     </div>
 
                     <div style={{textAlign: 'center'}}>
+                      {saving && (
+                        <p style={{
+                          fontSize: '0.875rem',
+                          fontWeight: '300',
+                          opacity: '0.8',
+                          marginBottom: '16px'
+                        }}>
+                          {currentContent.ui.saving}
+                        </p>
+                      )}
+                      
+                      {saveStatus === 'saved' && (
+                        <p style={{
+                          fontSize: '0.875rem',
+                          fontWeight: '300',
+                          opacity: '0.8',
+                          marginBottom: '16px',
+                          color: '#4ade80'
+                        }}>
+                          {currentContent.ui.saved}
+                        </p>
+                      )}
+                      
+                      {saveStatus === 'error' && (
+                        <p style={{
+                          fontSize: '0.875rem',
+                          fontWeight: '300',
+                          opacity: '0.8',
+                          marginBottom: '16px',
+                          color: '#f87171'
+                        }}>
+                          {currentContent.ui.error}
+                        </p>
+                      )}
+                      
                       <button onClick={resetQuiz} className="cosmic-button" style={{maxWidth: '300px', margin: '0 auto'}}>
                         {currentContent.ui.newJourney}
                       </button>
